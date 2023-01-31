@@ -1,4 +1,4 @@
-# Gerador e Validação de CPF
+# Código de validação de CPF
   - No final o CPF é validado.
   - O código tem por objetivo validar se o CPF segue as normas de criação e retorna se o CPF informado, no final retorna se "válido" ou "invalido".
 
