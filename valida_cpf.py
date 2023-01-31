@@ -1,9 +1,17 @@
-cpf_in = input("Digite um CPF: ")
 # algumas das coisas realizadas abaixo são regras da validação de cpf
 
+def imprimeResultado(cpf_format, value):
+    if value == True:
+        print('\n------------------------------------------')
+        print(f'O CPF ({cpf_format}) é válido\n\n')
+    else:
+        print('\n-------------------------------------------')
+        print(f'O CPF ({cpf_format}) é  inválido\n\n')
+
+
+
 def validaCpf (cpf_format):
-    cpf = cpf_format.replace('.','').replace('-','') # 16899535209
-    print(cpf)
+    cpf = cpf_format.replace('.','').replace('-','')
     dig1 = 0
     dig2 = 0
 
@@ -23,7 +31,7 @@ def validaCpf (cpf_format):
 
     # ja verifica se o primeiro digito encontrado é igual ao informado, caso contrario o cpf é invalido e já finaliza
     if dig1 != int(cpf[9]):
-        print(f'O CPF ({cpf_format}) informado, é inválido')
+        imprimeResultado(cpf_format, False)
         return
 
     # iteração que vai trabalhar a cerca do primeiro digito depois do hifen
@@ -38,12 +46,23 @@ def validaCpf (cpf_format):
 
     # ja verifica se o primeiro digito encontrado é igual ao informado, caso contrario o cpf é invalido e já finaliza
     if dig2 != int(cpf[10]):
-        print(f'O CPF ({cpf_format}) informado, é inválido')
+        imprimeResultado(cpf_format, False)
         return
 
     # se chegar até aqui, significa que o cpf cumpriu as regras e é valido
-    print(f'O CPF ({cpf_format}) informado, é realmente válido')
+    imprimeResultado(cpf_format, True)
     return
 
 
-validaCpf(cpf_in)
+while True:
+    print('--- GERADOR/VALIDADOR de CPFs ---')
+    print('1 - Gerar CPF\n2 - Inserir CPF\n3 - Sair')
+    opcao = int(input('Escolha uma opcao: '))
+
+    if opcao == 1:
+        pass
+    if opcao == 2:
+        cpf_in = input("Digite um cpf: ")
+        validaCpf(cpf_in)
+    else:
+        break
