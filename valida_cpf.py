@@ -56,12 +56,10 @@ def validaCpf (cpf_format):
 
 while True:
     print('--- GERADOR/VALIDADOR de CPFs ---')
-    print('1 - Gerar CPF\n2 - Inserir CPF\n3 - Sair')
+    print('1 - Inserir CPF\n2 - Sair')
     opcao = int(input('Escolha uma opcao: '))
 
     if opcao == 1:
-        pass
-    if opcao == 2:
         cpf_in = input("Digite um cpf: ")
         validaCpf(cpf_in)
     else:
