@@ -1,19 +1,15 @@
-# algumas das coisas realizadas abaixo são regras da validação de cpf
-
-def imprimeResultado(cpf_format, value):
-    if value == True:
-        print('\n------------------------------------------')
-        print(f'O CPF ({cpf_format}) é válido\n\n')
-    else:
-        print('\n-------------------------------------------')
-        print(f'O CPF ({cpf_format}) é  inválido\n\n')
-
-
+from imprimir_resultado import imprimeResultado
 
 def validaCpf (cpf_format):
     cpf = cpf_format.replace('.','').replace('-','')
     dig1 = 0
     dig2 = 0
+
+    # verifica se o CPF não é uma sequencia
+    sequencia = cpf == str(cpf[0]) * len(cpf)
+    if sequencia:
+        print('\nO CPF é uma sequência numérica e portando é inválido\n')
+        return
 
     # iteração que vai trabalhar a cerca do primeiro digito depois do hifen
     multiplicador = 10
@@ -23,7 +19,7 @@ def validaCpf (cpf_format):
         soma += produto
         multiplicador -= 1
 
-    #formula para calculo do primeiro digito, dos ultimos dois digitos:
+    # formula para calculo do primeiro digito, dos ultimos dois digitos:
     if 11 - (soma %11) > 9:
         dig1 = 0
     else:
@@ -52,15 +48,3 @@ def validaCpf (cpf_format):
     # se chegar até aqui, significa que o cpf cumpriu as regras e é valido
     imprimeResultado(cpf_format, True)
     return
-
-
-while True:
-    print('--- GERADOR/VALIDADOR de CPFs ---')
-    print('1 - Inserir CPF\n2 - Sair')
-    opcao = int(input('Escolha uma opcao: '))
-
-    if opcao == 1:
-        cpf_in = input("Digite um cpf: ")
-        validaCpf(cpf_in)
-    else:
-        break
